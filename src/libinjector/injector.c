@@ -1295,18 +1295,18 @@ static void print_injection_info(output_format_t format, const char* file, injec
             switch (format)
             {
                 case OUTPUT_CSV:
-                    printf("inject," FORMAT_TIMEVAL ",Success,%u,\"%s\",\"%s\",%u,%u\n",
+                    fprintf(stderr, "inject," FORMAT_TIMEVAL ",Success,%u,\"%s\",\"%s\",%u,%u\n",
                            UNPACK_TIMEVAL(t), injector->target_pid, process_name, escaped_arguments, injector->pid, injector->tid);
                     break;
 
                 case OUTPUT_KV:
-                    printf("inject Time=" FORMAT_TIMEVAL ",Status=Success,PID=%u,ProcessName=\"%s\",Arguments=\"%s\",InjectedPid=%u,InjectedTid=%u\n",
+                    fprintf(stderr, "inject Time=" FORMAT_TIMEVAL ",Status=Success,PID=%u,ProcessName=\"%s\",Arguments=\"%s\",InjectedPid=%u,InjectedTid=%u\n",
                            UNPACK_TIMEVAL(t), injector->target_pid, process_name, escaped_arguments, injector->pid, injector->tid);
                     break;
 
                 default:
                 case OUTPUT_DEFAULT:
-                    printf("[INJECT] TIME:" FORMAT_TIMEVAL " STATUS:SUCCESS PID:%u FILE:\"%s\" ARGUMENTS:\"%s\" INJECTED_PID:%u INJECTED_TID:%u\n",
+                    fprintf(stderr, "[INJECT] TIME:" FORMAT_TIMEVAL " STATUS:SUCCESS PID:%u FILE:\"%s\" ARGUMENTS:\"%s\" INJECTED_PID:%u INJECTED_TID:%u\n",
                            UNPACK_TIMEVAL(t), injector->target_pid, process_name, escaped_arguments, injector->pid, injector->tid);
                     break;
             }
@@ -1315,16 +1315,16 @@ static void print_injection_info(output_format_t format, const char* file, injec
             switch (format)
             {
                 case OUTPUT_CSV:
-                    printf("inject," FORMAT_TIMEVAL ",Timeout\n", UNPACK_TIMEVAL(t));
+                    fprintf(stderr, "inject," FORMAT_TIMEVAL ",Timeout\n", UNPACK_TIMEVAL(t));
                     break;
 
                 case OUTPUT_KV:
-                    printf("inject Time=" FORMAT_TIMEVAL ",Status=Timeout\n", UNPACK_TIMEVAL(t));
+                    fprintf(stderr, "inject Time=" FORMAT_TIMEVAL ",Status=Timeout\n", UNPACK_TIMEVAL(t));
                     break;
 
                 default:
                 case OUTPUT_DEFAULT:
-                    printf("[INJECT] TIME:" FORMAT_TIMEVAL " STATUS:Timeout\n", UNPACK_TIMEVAL(t));
+                    fprintf(stderr, "[INJECT] TIME:" FORMAT_TIMEVAL " STATUS:Timeout\n", UNPACK_TIMEVAL(t));
                     break;
             }
             break;
@@ -1366,7 +1366,7 @@ static void print_injection_info(output_format_t format, const char* file, injec
             switch (format)
             {
                 case OUTPUT_CSV:
-                    printf("inject," FORMAT_TIMEVAL ",Error,%d,\"%s\"\n",
+                    fprintf(stderr, "inject," FORMAT_TIMEVAL ",Error,%d,\"%s\"\n",
                            UNPACK_TIMEVAL(t), injector->error_code.code, injector->error_code.string);
                     break;
 
@@ -1377,7 +1377,7 @@ static void print_injection_info(output_format_t format, const char* file, injec
 
                 default:
                 case OUTPUT_DEFAULT:
-                    printf("[INJECT] TIME:" FORMAT_TIMEVAL " STATUS:Error ERROR_CODE:%d ERROR:\"%s\"\n",
+                    fprintf(stderr, "[INJECT] TIME:" FORMAT_TIMEVAL " STATUS:Error ERROR_CODE:%d ERROR:\"%s\"\n",
                            UNPACK_TIMEVAL(t), injector->error_code.code, injector->error_code.string);
                     break;
             }
